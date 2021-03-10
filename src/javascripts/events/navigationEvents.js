@@ -8,10 +8,6 @@ import { emptyBoards, showBoards } from '../components/boards';
 
 // navigation events
 const navigationEvents = () => {
-  // LOGOUT BUTTON
-  document.querySelector('#logout-button')
-    .addEventListener('click', signOut);
-
   // ALL BOARDS
   document.querySelector('#all-boards').addEventListener('click', () => {
     // Get ALL Boards on click
@@ -23,9 +19,9 @@ const navigationEvents = () => {
       }
     });
   });
-
-  document.querySelector('#store').addEventListener('click', () => {
-    // console.warn('All Pins');
+  // ALL PINS
+  document.querySelector('#all-pins').addEventListener('click', () => {
+    // Get Pins on click
     getPins().then((pins) => {
       if (pins.length) {
         showPins(pins);
@@ -34,6 +30,9 @@ const navigationEvents = () => {
       }
     });
   });
+  // LOGOUT BUTTON
+  document.querySelector('#logout-button')
+    .addEventListener('click', signOut);
 };
 
 export default navigationEvents;

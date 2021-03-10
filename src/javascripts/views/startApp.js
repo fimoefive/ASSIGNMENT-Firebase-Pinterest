@@ -1,19 +1,19 @@
 import { showBoards, emptyBoards } from '../components/boards';
-import { showPins, emptyPins } from '../components/pins';
-import logoutButton from '../components/buttons/loginButton';
+// import { showPins, emptyPins } from '../components/pins';
 import domBuilder from '../components/domBuilder';
-import navBar from '../components/naveBar';
-import domEvents from '../events/domEvents';
 import navigationEvents from '../events/navigationEvents';
-import { getPins } from '../helpers/data/pinData';
+import navBar from '../components/naveBar';
+import logoutButton from '../components/buttons/loginButton';
 import { getBoards } from '../helpers/data/boardData';
+// import { getPins } from '../helpers/data/pinData';
+import domEvents from '../events/domEvents';
 
 const startApp = () => {
   domBuilder();
-  domEvents();
   navBar();
-  logoutButton();
+  domEvents();
   navigationEvents();
+  logoutButton();
   getBoards().then((boardsArray) => {
     if (boardsArray.length) {
       showBoards(boardsArray);
@@ -21,13 +21,13 @@ const startApp = () => {
       emptyBoards();
     }
   });
-  getPins().then((Array) => {
-    if (Array.length) {
-      showPins(Array);
-    } else {
-      emptyPins();
-    }
-  });
+  // getPins().then((Array) => {
+  //   if (Array.length) {
+  //     showPins(Array);
+  //   } else {
+  //     emptyPins();
+  //   }
+  // });
 };
 
 export default startApp;

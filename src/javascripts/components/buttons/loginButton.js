@@ -1,10 +1,10 @@
 import signIn from '../../helpers/auth/signIn';
 
-// LOGIN BUTTON
+// GOOGLE LOGIN BUTTON
 const loginButton = () => {
-  const domString = '<button id="auth-in" class="btn btn-danger">LOGIN</button>';
-  document.querySelector('#login-form-container').innerHTML = domString;
-  document.querySelector('#auth-in').addEventListener('click', signIn);
+  const domString = '<button id="google-auth" class="btn btn-danger">LOGIN</button>';
+  document.querySelector('#login-button').innerHTML = domString;
+  document.querySelector('#google-auth').addEventListener('click', signIn);
 };
 
 export default loginButton;

@@ -6,7 +6,7 @@ const dbUrl = firebaseConfig.databaseURL;
 
 // GET PINS
 export const getPins = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/Pins.json`)
+  axios.get(`${dbUrl}/pins.json`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
@@ -18,7 +18,7 @@ export const getPins = () => new Promise((resolve, reject) => {
 
 // CREATE PIN
 export const createPin = (pinObject) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/Pins.json`, pinObject)
+  axios.post(`${dbUrl}/pins.json`, pinObject)
     .then((response) => {
       const body = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/Boards/${response.data.name}.json`, body)
@@ -30,7 +30,7 @@ export const createPin = (pinObject) => new Promise((resolve, reject) => {
 
 // DELETE PIN
 export const deletePin = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/Pins/${firebaseKey}.json`)
+  axios.delete(`${dbUrl}/pins/${firebaseKey}.json`)
     .then(() => getPins().then((pins) => resolve(pins)))
     .catch((error) => reject(error));
 });

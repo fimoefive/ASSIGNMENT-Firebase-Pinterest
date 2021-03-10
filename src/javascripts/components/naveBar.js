@@ -1,4 +1,5 @@
 const navBar = () => {
+  document.querySelector('#login-form-container').innerHTML = '';
   document.querySelector('#navigation').innerHTML = `
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mb-4">
         <a class="navbar-brand title" href="#">Pinterest</a>
@@ -21,7 +22,10 @@ const navBar = () => {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="pins">Pins</a>
+              <a class="nav-link" href="#" id="all-boards">Boards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="all-pins">Pins</a>
             </li>
             <li>
             <input
@@ -32,7 +36,6 @@ const navBar = () => {
             />
             </li>
           </ul>
-          <div id="cart-button"></div>
           <div id="logout-button"></div>
         </div>
       </nav>`;

@@ -4,12 +4,12 @@ import { showPins } from '../components/pins';
 import { createPin, deletePin } from '../helpers/data/pinData';
 import { createBoard, deleteBoard } from '../helpers/data/boardData';
 
-const domEvents = (uid) => {
+const domEvents = () => {
   document.querySelector('body').addEventListener('click', (e) => {
     // CLICK EVENT FOR DELETING A BOARD
     if (e.target.id.includes('delete-board')) {
       const boardId = e.target.id.split('--')[1];
-      deleteBoard(boardId, uid).then((boardsArray) => showBoards(boardsArray));
+      deleteBoard(boardId).then((boardsArray) => showBoards(boardsArray));
     }
 
     // ADD CLICK EVENT FOR DELETING A PIN
@@ -21,11 +21,11 @@ const domEvents = (uid) => {
 
     // CLICK EVENT FOR SUBMITTING FORM FOR ADDING A BOARD
     if (e.target.id.includes('submit-board')) {
+      // const userId = firebase.auth().currentUser.uid;
       e.preventDefault();
       const boardObject = {
         title: document.querySelector('#title').value,
         image: document.querySelector('#image').value,
-        uid
       };
       createBoard(boardObject).then((boardsArray) => showBoards(boardsArray));
     }
@@ -34,11 +34,9 @@ const domEvents = (uid) => {
     if (e.target.id.includes('submit-pin')) {
       // console.warn(firebase.auth().currentUser.uid);
       e.preventDefault();
-      // const userId = firebase.auth().currentUser.uid;
       const pinObject = {
         title: document.querySelector('#title').value,
         image: document.querySelector('#image').value,
-        uid
       };
       createPin(pinObject).then((pinsArray) => showPins(pinsArray));
     }
