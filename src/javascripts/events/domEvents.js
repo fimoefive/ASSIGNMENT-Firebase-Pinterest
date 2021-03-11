@@ -1,8 +1,9 @@
 import { showBoards } from '../components/boards';
-import { showPins } from '../components/pins';
-// import formModal from '../components/forms/formModal';
-import { createPin, deletePin } from '../helpers/data/pinData';
+// import boardInfo from '../components/boardInfo';
 import { createBoard, deleteBoard } from '../helpers/data/boardData';
+import { showPins } from '../components/pins';
+import { createPin, deletePin } from '../helpers/data/pinData';
+// import formModal from '../components/forms/formModal';
 
 const domEvents = () => {
   document.querySelector('body').addEventListener('click', (e) => {
