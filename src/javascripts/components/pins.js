@@ -1,24 +1,26 @@
 const showPins = (array) => {
   document.querySelector('#add-button').innerHTML = '<button class="btn btn-success btn-lg mb-4" id="add-pin-btn">Add Pin</button>';
 
-  document.querySelector('#store').innerHTML = '';
+  document.querySelector('#header').innerHTML = '<h1>Pins</h1>';
+  document.querySelector('#display-area').innerHTML = '';
   document.querySelector('#form-container').innerHTML = '';
 
   array.forEach((item) => {
-    document.querySelector('#store').innerHTML += `
-    <div class="card">
-      <div class="card-body" style="height: 180px;">
+    document.querySelector('#display-area').innerHTML += `<div class="card" id="pin-card">
+    <img class="card-img-top" src=${item.imageUrl} alt=${item.title} style="height: 200px; width: 200px;">
+    <div class="card-body" style="height: 180px;">
       <h5 class="card-title">${item.title}</h5>
       <hr>
-      <p>${item.description}</p>
-      <button class="btn btn-danger" id="delete---${item.firebaseKey}">Delete Pin</button>
+      <p>${item.content}</p>
+      <button class="far fa-edit" data-toggle="modal" data-target="#formModal" id="edit-pin-btn--${item.firebaseKey}"></button>
+      <button class="btn btn-danger" id="deletePin--${item.firebaseKey}">Delete Pin</button>
       </div>
     </div>`;
   });
 };
 
 const emptyPins = () => {
-  document.querySelector('#store').innerHTML = '<h1>No Pins</h1>';
+  document.querySelector('#display-area').innerHTML = '<h1>No Pins</h1>';
 };
 
 export { showPins, emptyPins };

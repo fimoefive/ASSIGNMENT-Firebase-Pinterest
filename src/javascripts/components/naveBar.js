@@ -1,4 +1,5 @@
 const navBar = () => {
+  document.querySelector('#login-form-container').innerHTML = '';
   document.querySelector('#navigation').innerHTML = `
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mb-4">
         <a class="navbar-brand title" href="#">Pinterest</a>
@@ -15,13 +16,14 @@ const navBar = () => {
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="#" id="all-boards">
                 All Boards <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="pins">Pins</a>
+              <a class="nav-link" href="#" id="all-pins">Pins <span class="sr-only">(current)</span>
+              </a>
             </li>
             <li>
             <input
@@ -31,9 +33,10 @@ const navBar = () => {
               aria-label="Search"
             />
             </li>
+            <li class="nav-item">
+            <button class="nav-link" href="#" type="button" id="logout-button" style="background: black; align-item: center;">Log Out</button>
+            </li>
           </ul>
-          <div id="cart-button"></div>
-          <div id="logout-button"></div>
         </div>
       </nav>`;
 };

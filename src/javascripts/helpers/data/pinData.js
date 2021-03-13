@@ -6,7 +6,7 @@ const dbUrl = firebaseConfig.databaseURL;
 
 // GET PINS
 export const getPins = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/Pins.json`)
+  axios.get(`${dbUrl}/pins.json`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
@@ -16,12 +16,19 @@ export const getPins = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+// GET SINGLE PIN
+export const getBoardPins = (boardId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/pins/${boardId}.json`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
 // CREATE PIN
 export const createPin = (pinObject) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/Pins.json`, pinObject)
+  axios.post(`${dbUrl}/pins.json`, pinObject)
     .then((response) => {
       const body = { firebaseKey: response.data.name };
-      axios.patch(`${dbUrl}/Boards/${response.data.name}.json`, body)
+      axios.patch(`${dbUrl}/pins/${response.data.name}.json`, body)
         .then(() => {
           getPins().then((pins) => resolve(pins));
         });
@@ -30,7 +37,15 @@ export const createPin = (pinObject) => new Promise((resolve, reject) => {
 
 // DELETE PIN
 export const deletePin = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/Pins/${firebaseKey}.json`)
-    .then(() => getPins().then((pins) => resolve(pins)))
+  axios.delete(`${dbUrl}/pins/${firebaseKey}.json`)
+    .then(() => getPins().then((pinsArray) => resolve(pinsArray)))
     .catch((error) => reject(error));
+});
+
+// SEARCH PINS
+export const searchPins = (uid, searchValue) => new Promise((resolve, reject) => {
+  getPins(uid).then((pinsArray) => {
+    const returnedPins = pinsArray.filter((pin) => pin.title.toLowerCase().includes(searchValue));
+    resolve(returnedPins);
+  }).catch((error) => reject(error));
 });
