@@ -16,6 +16,13 @@ export const getBoards = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+// GET SINGLE BOARD
+export const getSingleBoard = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/boards/${firebaseKey}.json`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 // CREATE BOARD
 export const createBoard = (boardObject) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/boards.json`, boardObject)

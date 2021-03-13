@@ -22,9 +22,6 @@ const navBar = () => {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="all-boards">Boards</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#" id="all-pins">Pins</a>
             </li>
             <li>
@@ -35,8 +32,10 @@ const navBar = () => {
               aria-label="Search"
             />
             </li>
+            <li class="nav-item">
+              <button class="nav-link" href="#" type="button" id="logout-button" style="background: black; align-item: center;">Log Out</button>
+            </li>
           </ul>
-          <div id="logout-button"></div>
         </div>
       </nav>`;
 };
